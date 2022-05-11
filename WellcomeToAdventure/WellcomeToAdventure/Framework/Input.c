@@ -5,7 +5,10 @@
 
 bool s_preKeyStates[256];
 bool s_currentKeyStates[256];
-
+/// <summary>
+/// 
+/// </summary>
+/// <param name=""></param>
 
 void Input_Update(void)
 {
