@@ -17,10 +17,13 @@
       <Filter>Framework</Filter>
     </ClInclude>
     <ClInclude Include="Type.h" />
-    <ClInclude Include="Framework\common.h" />
     <ClInclude Include="Framework\Renderer.h">
       <Filter>Framework</Filter>
     </ClInclude>
+    <ClInclude Include="Framework\Timer.h">
+      <Filter>Framework</Filter>
+    </ClInclude>
+    <ClInclude Include="Commonh.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.c" />
@@ -28,6 +31,9 @@
       <Filter>Framework</Filter>
     </ClCompile>
     <ClCompile Include="Framework\Renderer.c">
+      <Filter>Framework</Filter>
+    </ClCompile>
+    <ClCompile Include="Framework\Timer.c">
       <Filter>Framework</Filter>
     </ClCompile>
   </ItemGroup>
