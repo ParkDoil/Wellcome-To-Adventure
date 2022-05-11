@@ -2,6 +2,7 @@
 #include "commonh.h"
 #include "Renderer.h"
 #include "Timer.h"
+#include "Input.h"
 
 bool App_Init()
 {
@@ -14,28 +15,58 @@ bool App_Init()
 
 void processInput()
 {
-
+	Input_Update();
 }
 
-float elapsedTime;
-bool canShow = false;
+char str[128] = "";
 void update()
 {
-	elapsedTime += DELTA_TIME;
-
-	if (elapsedTime >= 0.1)
+	sprintf_s(str, sizeof(str), "¡à¡à¡à¡à¡à¡à¡à\n¡à¡à¡à¡à¡à¡à¡à\n¡à¡à¡à¡à¡à¡à¡à\n¡à¡à¡à¡à¡à¡à¡à\n¡à¡à¡à¡à¡à¡à¡à\n¡à¡à¡à¡à¡à¡à¡à\n¡à¡à¡à¡à¡à¡à¡à");
+	if (Input_GetKey(VK_UP))
 	{
-		elapsedTime = 0.0f;
-		canShow = !canShow;
+		sprintf_s(str, sizeof(str), "¡à¡à¡à¡á¡à¡à¡à\n¡à¡à¡á¡á¡á¡à¡à\n¡à¡á¡à¡á¡à¡á¡à\n¡à¡à¡à¡á¡à¡à¡à\n¡à¡à¡à¡á¡à¡à¡à\n¡à¡à¡à¡á¡à¡à¡à\n¡à¡à¡à¡á¡à¡à¡à");
+	}
+	if (Input_GetKey(VK_DOWN))
+	{
+		sprintf_s(str, sizeof(str), "¡à¡à¡à¡á¡à¡à¡à\n¡à¡à¡à¡á¡à¡à¡à\n¡à¡à¡à¡á¡à¡à¡à\n¡à¡à¡à¡á¡à¡à¡à\n¡à¡á¡à¡á¡à¡á¡à\n¡à¡à¡á¡á¡á¡à¡à\n¡à¡à¡à¡á¡à¡à¡à");
+	}
+	if (Input_GetKey(VK_LEFT))
+	{
+		sprintf_s(str, sizeof(str), "¡à¡à¡à¡à¡à¡à¡à\n¡à¡à¡á¡à¡à¡à¡à\n¡à¡á¡à¡à¡à¡à¡à\n¡á¡á¡á¡á¡á¡á¡á\n¡à¡á¡à¡à¡à¡à¡à\n¡à¡à¡á¡à¡à¡à¡à\n¡à¡à¡à¡à¡à¡à¡à");
+	}
+	if (Input_GetKey(VK_RIGHT))
+	{
+		sprintf_s(str, sizeof(str), "¡à¡à¡à¡à¡à¡à¡à\n¡à¡à¡à¡à¡á¡à¡à\n¡à¡à¡à¡à¡à¡á¡à\n¡á¡á¡á¡á¡á¡á¡á\n¡à¡à¡à¡à¡à¡á¡à\n¡à¡à¡à¡à¡á¡à¡à\n¡à¡à¡à¡à¡à¡à¡à");
+	}
+	if (Input_GetKey(VK_LEFT)&&Input_GetKey(VK_DOWN)) //¢×
+	{
+		sprintf_s(str, sizeof(str), "¡à¡à¡à¡à¡à¡à¡á\n¡à¡à¡à¡à¡à¡á¡à\n¡à¡à¡à¡à¡á¡à¡à\n¡á¡à¡à¡á¡à¡à¡à\n¡á¡à¡á¡à¡à¡à¡à\n¡á¡á¡à¡à¡à¡à¡à\n¡á¡á¡á¡á¡à¡à¡à");
+	}
+	if (Input_GetKey(VK_LEFT) && Input_GetKey(VK_RIGHT)) //¡ê
+	{
+		sprintf_s(str, sizeof(str), "¡à¡à¡à¡à¡à¡à¡à\n¡à¡à¡á¡à¡á¡à¡à\n¡à¡á¡à¡à¡à¡á¡à\n¡á¡á¡á¡á¡á¡á¡á\n¡à¡á¡à¡à¡à¡á¡à\n¡à¡à¡á¡à¡á¡à¡à\n¡à¡à¡à¡à¡à¡à¡à");
+	}
+	if (Input_GetKey(VK_LEFT) && Input_GetKey(VK_UP)) //¢Ø
+	{
+		sprintf_s(str, sizeof(str), "¡á¡á¡á¡á¡à¡à¡à\n¡á¡á¡à¡à¡à¡à¡à\n¡á¡à¡á¡à¡à¡à¡à\n¡á¡à¡à¡á¡à¡à¡à\n¡à¡à¡à¡à¡á¡à¡à\n¡à¡à¡à¡à¡à¡á¡à\n¡à¡à¡à¡à¡à¡à¡á");
+	}
+	if (Input_GetKey(VK_RIGHT) && Input_GetKey(VK_DOWN)) //¢Ù
+	{
+		sprintf_s(str, sizeof(str), "¡á¡à¡à¡à¡à¡à¡à\n¡à¡á¡à¡à¡à¡à¡à\n¡à¡à¡á¡à¡à¡à¡à\n¡à¡à¡à¡á¡à¡à¡á\n¡à¡à¡à¡à¡á¡à¡á\n¡à¡à¡à¡à¡à¡á¡á\n¡à¡à¡à¡á¡á¡á¡á");
+	}
+	if (Input_GetKey(VK_RIGHT) && Input_GetKey(VK_UP)) //¢Ö
+	{
+		sprintf_s(str, sizeof(str), "¡à¡à¡à¡á¡á¡á¡á\n¡à¡à¡à¡à¡à¡á¡á\n¡à¡à¡à¡à¡á¡à¡á\n¡à¡à¡à¡á¡à¡à¡à\n¡à¡à¡á¡à¡à¡à¡à\n¡à¡á¡à¡à¡à¡à¡à\n¡á¡à¡à¡à¡à¡à¡à");
+	}
+	if (Input_GetKey(VK_UP) && Input_GetKey(VK_DOWN)) //¢Õ
+	{
+		sprintf_s(str, sizeof(str), "¡à¡à¡à¡á¡à¡à¡à\n¡à¡à¡á¡á¡á¡à¡à\n¡à¡á¡à¡á¡à¡á¡à\n¡à¡à¡à¡á¡à¡à¡à\n¡à¡á¡à¡á¡à¡á¡à\n¡à¡à¡á¡á¡á¡à¡à\n¡à¡à¡à¡á¡à¡à¡à");
 	}
 }
 
 void render()
 {
-	if (canShow)
-	{
-
-	}
+	Renderer_DrawText(str, strlen(str));
 	Renderer_Flip();
 }
 
