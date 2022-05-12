@@ -4,6 +4,7 @@
 #include "Timer.h"
 #include "Input.h"
 #include "Random.h"
+#include "Text.h"
 
 #define INT32_MAX_VALUE 2147483647ll
 #define INT32_MIN_VALUE -2147483648ll
@@ -26,53 +27,32 @@ void processInput()
 	Input_Update();
 }
 
-float elapsedTime;
-float elapsed1Time;
-bool canShow1 = false;
-bool canShow2 = false;
-char str1[128] = "";
-char str2[128] = "";
+
+Text text[128];
 
 void update()
 {
-	elapsedTime += DELTA_TIME;
-	elapsed1Time += DELTA_TIME;
-
-	if (elapsedTime >= 0.35)
+	//TexCopyWithWhite(text, L"우리반의 존잘은 성권문이다.");
+	TextCopy(text, L"우리반의 존잘은 성권문이다.",0);
+	
+	/*
+	TextCopy(text, TEXT("DOWNLOAD..."));
+	int32 length = TextLen(text);
+	for (int32 i = 0; text[i].Char.UnicodeChar != '\0'; i++)
 	{
-		float minfnum = -13920.13283;
-		float maxfnum = 19383.18373;
-		float resultfnum = Random_GetFNumberFromRange(minfnum, maxfnum);
-		sprintf_s(str1, sizeof(str1), "실수랜덤값 : %.7f\n", resultfnum);
-		elapsedTime = 0.0f;
-		canShow1 = !canShow1;
+		text[i].Attributes = BACK_COLOR_RED | TEXT_COLOR_WHITE | TEXT_COLOR_STRONG;
 	}
-	if (elapsed1Time >= 0.55)
-	{
-		int32 minnum = INT32_MIN_VALUE;
-		int32 maxnum = INT32_MAX_VALUE;
-		int32 resultnum = Random_GetFNumberFromRange(minnum, maxnum);
-		sprintf_s(str2, sizeof(str2), "\n정수랜덤 값 : %d\n", resultnum);
-		elapsed1Time = 0.0f;
-		canShow2 = !canShow2;
-	}
+	*/
 
 }
 
 void render()
 {
-	if (canShow1)
-	{
-		Renderer_DrawText(str1, strlen(str1));
-	}
-	if (canShow2)
-	{
-		Renderer_DrawText(str2, strlen(str2));
-	}
+	Renderer_DrawText(text, TextLen(text), 10, 10);
 	Renderer_Flip();
 }
 
-void cleanup()
+void cleanup(void)
 {
 	Renderer_Cleanup();
 }
